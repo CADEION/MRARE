@@ -14,6 +14,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends HomeScreenEditViewModel {
   bool isBold = false; // Track if the text is bold
+  bool isItalic = false; // Track if the text is italic
   
   @override
   Widget build(BuildContext context) {
@@ -48,11 +49,13 @@ class _HomeScreenState extends HomeScreenEditViewModel {
                               textInfo: texts[i],
                               font: selectedFont, // Use selected font
                               isBold: isBold, // Pass the bold state
+                              isItalic: isItalic, // Pass the italic state
                             ),
                             child: ImageText(
                               textInfo: texts[i],
                               font: selectedFont, // Use selected font
                               isBold: isBold, // Pass the bold state
+                              isItalic: isItalic, // Pass the italic state
                             ),
                             onDragEnd: (details) {
                               final renderBox =
@@ -131,6 +134,7 @@ class _HomeScreenState extends HomeScreenEditViewModel {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  // Bold Toggle
                   IconButton(
                     icon: Icon(
                       isBold ? Icons.format_bold : Icons.format_bold_outlined,
@@ -138,6 +142,17 @@ class _HomeScreenState extends HomeScreenEditViewModel {
                     onPressed: () {
                       setState(() {
                         isBold = !isBold; // Toggle the bold state
+                      });
+                    },
+                  ),
+                  // Italic Toggle
+                  IconButton(
+                    icon: Icon(
+                      isItalic ? Icons.format_italic : Icons.format_italic_outlined,
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        isItalic = !isItalic; // Toggle the italic state
                       });
                     },
                   ),
