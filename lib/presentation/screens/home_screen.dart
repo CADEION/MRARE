@@ -13,6 +13,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends HomeScreenEditViewModel {
+  bool isBold = false; // Track if the text is bold
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,10 +47,12 @@ class _HomeScreenState extends HomeScreenEditViewModel {
                             feedback: ImageText(
                               textInfo: texts[i],
                               font: selectedFont, // Use selected font
+                              isBold: isBold, // Pass the bold state
                             ),
                             child: ImageText(
                               textInfo: texts[i],
                               font: selectedFont, // Use selected font
+                              isBold: isBold, // Pass the bold state
                             ),
                             onDragEnd: (details) {
                               final renderBox =
@@ -121,6 +125,21 @@ class _HomeScreenState extends HomeScreenEditViewModel {
                             });
                           },
                     icon: const Icon(Icons.add),
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  IconButton(
+                    icon: Icon(
+                      isBold ? Icons.format_bold : Icons.format_bold_outlined,
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        isBold = !isBold; // Toggle the bold state
+                      });
+                    },
                   ),
                 ],
               ),

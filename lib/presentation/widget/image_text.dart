@@ -3,26 +3,25 @@ import '../../models/text_info.dart';
 
 class ImageText extends StatelessWidget {
   final TextInfo textInfo;
-  final String font; // Add font parameter
+  final String font;
+  final bool isBold;
 
   const ImageText({
-    super.key,
     required this.textInfo,
-    required this.font, // Accept the font parameter
+    required this.font,
+    required this.isBold,
   });
 
   @override
   Widget build(BuildContext context) {
     return Text(
       textInfo.text,
-      textAlign: textInfo.textAlign,
       style: TextStyle(
+        fontFamily: font,
         fontSize: textInfo.fontSize,
-        fontWeight: textInfo.fontWeight,
-        fontStyle: textInfo.fontStyle,
-        color: textInfo.color,
-        fontFamily: font, // Apply selected font here
+        fontWeight: isBold ? FontWeight.bold : FontWeight.normal,
       ),
     );
   }
 }
+
